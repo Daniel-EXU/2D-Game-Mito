@@ -3,26 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
+
 public class camera : MonoBehaviour
-{
-
-    void Update()
-    {
-
-    }
-
-
-
-
-
-}
-
-
-
-/*public class camera : MonoBehaviour
 {
     public Transform jogador; // Referência ao objeto do jogador
     public float offsetY = 1.3f; // Offset na posição Y da câmera
+
+   
 
     void Update()
     {
