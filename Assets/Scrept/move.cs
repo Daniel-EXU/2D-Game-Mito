@@ -5,7 +5,7 @@ public class Move : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator playerAnim;
-    float moveSpeed = 5f; // Velocidade de movimento do personagem
+    public float moveSpeed = 8f; // Velocidade de movimento do personagem
     float jumpForce = 10f; // Força do pulo do personagem
     bool isGrounded = true; // Verifica se o personagem está no chão
 
@@ -51,7 +51,6 @@ public class Move : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         isGrounded = false; // Indica que o personagem está no ar
-        playerAnim.SetBool("isJump", true); // Ativar a animação de pulo
     }
 
     void AtualizarAnimacao()
@@ -79,7 +78,7 @@ public class Move : MonoBehaviour
                 playerAnim.SetBool("isRunLeft", false); // Desativar a animação de corrida para esquerda
             }
 
-            playerAnim.SetBool("isJump", !isGrounded); // Desativar a animação de pulo se estiver no chão
+            playerAnim.SetBool("isJump", false); // Desativar a animação de pulo se estiver no chão
         }
         else // Se estiver no ar
         {
@@ -96,112 +95,8 @@ public class Move : MonoBehaviour
             isGrounded = true; // O personagem está no chão
         }
 
-     
+
     }
 
 
 }
-
-
-/*
-
-
-
-
-CapsuleCollider2D playerColl;
-Vector2 moveInput;
-float speed = 8f;
-// float jumpForce = 8f;
-//string split = null;
-
-void Start()
-{
-    rb = GetComponent<Rigidbody2D>();
-    playerAnim = GetComponent<Animator>();
-    playerColl = GetComponent<CapsuleCollider2D>();
-}
-
-void Update()
-{
-    tesc();
-    Run();
-    FlipSprit();
-}
-
-void tesc() 
-{
-    if (Keyboard.current.leftArrowKey.isPressed)
-    {
-        FuncaoSetaEsquerda(); // Função associada à tecla de seta para a esquerda
-    }
-    else if (Keyboard.current.rightArrowKey.isPressed)
-    {            
-        FuncaoSetaDireita(); // Função associada à tecla de seta para a direita
-    }
-    else if (Keyboard.current.upArrowKey.isPressed)
-    {
-        FuncaoSetaCima(); // Função associada à tecla de seta para cima
-    }
-    else if (Keyboard.current.spaceKey.isPressed)
-    {
-        FuncaoBarraEspaco(); // Função associada à tecla de espaço
-    }
-
-}
-
-
-void inMove(InputValue value)
-{
-    moveInput = value.Get<Vector2>();
-}
-void Run()
-{
-    // Lógica de movimentação do personagem
-    Vector2 playerSpeed = new Vector2(moveInput.x * speed, rb.velocity.y);
-    rb.velocity = playerSpeed;
-
-    bool playerHasXSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
-    playerAnim.SetBool("isRun", playerHasXSpeed);
-}
-
-void FuncaoSetaEsquerda()
-{
-    // Ação associada à tecla de seta para a esquerda
-    Debug.Log("Função para a seta esquerda.");
-}
-
-void FuncaoSetaDireita()
-{
-    // Ação associada à tecla de seta para a direita
-    Debug.Log("Função para a seta direita.");
-    Run(); // Chama a função para executar o personagem
-
-
-}
-
-void FuncaoSetaCima()
-{
-    // Ação associada à tecla de seta para cima
-    Debug.Log("Função para a seta para cima.");
-}
-
-void FuncaoBarraEspaco()
-{
-    // Ação associada à tecla de espaço
-    Debug.Log("Função para a tecla de espaço.");
-}
-
-void FlipSprit()
-{
-    // Lógica para virar o sprite
-    float positx = (Mathf.Sign(rb.velocity.x)) * 8f;
-    float posity = 8f;
-
-    bool playerHasXSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
-    if (playerHasXSpeed)
-    {
-        transform.localScale = new Vector2(posity, posity);
-    }
-}
-}
-*/
